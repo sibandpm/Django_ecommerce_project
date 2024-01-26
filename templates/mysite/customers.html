@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Customer List</title>
+</head>
+<body>
+    <h1>Customer List - Buy A Lot</h1>
+  <table>
+    
+        <thead>
+            <th>Account #</th>
+            <th>Customer Name</th>
+            <th>Email Address</th>
+        </thead>
+        <tbody>
+            <a href="{% url 'dashboard'  %}">HOMEk</a>
+            {% for customer in customer_list %}
+            <tr>
+                <td><a href="{% url 'customer' customer.customerno %}">{{ customer.customerno }}</a></td>
+                <td>{{ customer.name }} {{ customer.lastname }}</td>
+                <td>{{ customer.email }}</td>
+            </tr>
+            {% endfor %}
+
+
+
+        </tbody>
+           
+     
+    </table>
+</body>
+</html>

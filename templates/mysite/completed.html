@@ -1,0 +1,201 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Click0nline Store</title>
+        <meta charset="utf-8" />
+        <meta name="viewpoint" content="width=device-width,initial-scal=1.0">
+        <meta http-equip="X-UA-compatible" content="ie=edge">
+        <link rel="stylesheet" href={%static "css/style.css" %} media="screen" type="text/css" />
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+        <script type="text/javascript" src={%static "store.js" %}></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body id="success-page">
+
+<!-- NAVIGATION BAR -->
+
+
+
+    <section id="nav-bar">
+        <nav class="navbar navbar-expand-lg navbar-light">
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="topnav">
+                <a style="color:black;" class="active" href="/index "> <img src={%static "images/logo-icon2.png" %} class="footer-logo"> </a>  
+                
+            </div>
+            <div class="collapse navbar-collapse" id="navbarNav">
+
+                <ul class="navbar-nav ml-auto">
+
+                    <li class="nav-item">
+                        <a style="color:black;" class="nav-link" href="/products">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a style="color:black;" class="nav-link" href="/cart">Cart</a>
+
+                    </li>
+
+                    <li class="nav-item">
+                        <a style="color:black;" class="nav-link" href="/about">About Us</a>
+                    </li>
+
+                    <!-- <li class="nav-item">
+                        <a style="color:black;" class="nav-link" href="#services">Our Services</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a style="color:black;" class="nav-link" href="#team" tabindex="-1" aria-disabled="true">Our
+                            Team</a> -->
+                    </li>
+                    <li class="nav-item">
+                        <a style="color:black;" class="nav-link" href="/contact">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a style="color:black;" class="nav-link" href="/login">Login</a>
+                    </li>
+
+                </ul>
+            </div>
+        </nav>
+    </section>
+
+    <div id="site">
+
+        <div class="container">
+            <div class="row mt-5">
+                <div class="col-md-6 offset-md-3">
+                    <div class="alert alert-success">
+                        <strong>Order processed successfully!</strong> Thank you for your purchase.
+                    </div>
+                </div>
+               
+            </div>
+        </div>
+
+      
+            
+      
+        <div id="content">
+            <h1>Your Order - (Order # {{ invoiceno }})</h1>
+
+
+            <table id="checkout-cart" class="shopping-cart">
+                <thead>
+                    <tr>
+                        <th scope="col">Item</th>
+                        <th scope="col">Qty</th>
+                        <th scope="col">Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+            <div id="pricing">
+
+                <p id="shipping">
+                    <strong>Shipping</strong>: <span id="sshipping"></span>
+                </p>
+
+                <p id="sub-total">
+                    <strong>Total</strong>: <span id="stotal"></span>
+                </p>
+            </div>
+
+
+           
+        </div>
+    </div>
+
+<!-- FOOTER-->
+
+
+    <section id="footer" style="margin-top: 40px;">
+        <footer class="container">
+            <div class="footer-middle">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-s6 col-lg-3">
+                            <div class="widget widget-about">
+                                <img src={%static "images/logo-icon2.png" %} class="footer-logo" alt="Footer Logo"
+                              width="150" height="76">
+                          <p> </p>
+
+                          <div class="widget-call">
+                              <i class="icon-phone"></i>
+                              Got Question? Call us 24/7
+                              <a href="tel:#" style="color: #FCB941;">+27814014996</a>
+                          </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="widget">
+                                <h4 class="widget-title">Useful Links</h4>
+
+                                <ul class="widget-list">
+                                    <li><a href="/about.html" style="color: #FCB941;">About Company</a></li>
+                                    <li><a href="/services.html" style="color: #FCB941;">Our Services</a></li>
+                                    <li><a href="#" style="color: #FCB941;">How to shop</a></li>
+                                    <li><a href="/faq.html" style="color: #FCB941;">FAQ</a></li>
+                                    <li><a href="/contact.html" style="color: #FCB941;">Contact us</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="widget">
+                                <h4>Customer Service</h4>
+
+                                <ul class="widget-list">
+                                    <li><a href="#" style="color: #FCB941;">Payment Methods</a></li>
+                                    <li><a href="#" style="color: #FCB941;">Money-back guarantee!</a></li>
+                                    <li><a href="#" style="color: #FCB941;">Returns</a></li>
+                                    <li><a href="#" style="color: #FCB941;">Shipping</a></li>
+                                    <li><a href="#" style="color: #FCB941;">Terms and conditions</a></li>
+                                    <li><a href="#" style="color: #FCB941;">Privacy Policy</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="widget">
+                                <h4 class="widget-title">My Account</h4>
+
+                                <ul class="widget-list">
+                                    <li><a href="#" style="color: #FCB941;">Sign In</a></li>
+                                    <li><a href="/cart" style="color: #FCB941;">View Cart</a></li>
+                                    <li><a href="#" style="color: #FCB941;">My Wishlist</a></li>
+                                    <li><a href="#" style="color: #FCB941;">Track My Order</a></li>
+                                    <li><a href="#" style="color: #FCB941;">Help</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="container">
+                    <p style="text-align:center;">Copyright © 2022 Electronic Store. All Rights Reserved.</p>
+                    <!--<figure style="float: right;">
+                        <img src="../../static/images/products/payments.png" alt="Payment methods" width="272" height="20">
+                    </figure> -->
+                </div>
+            </div>
+        </footer>
+    </section>
+
+</body>
+
+</html>

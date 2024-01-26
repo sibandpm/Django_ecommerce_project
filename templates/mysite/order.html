@@ -1,0 +1,300 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Your Order</title>
+    <meta charset="utf-8" />
+	<meta name="viewpoint" content="width=device-width,initial-scal=1.0">
+	<meta http-equip="X-UA-compatible" content="ie=edge">
+    <link rel="stylesheet" href={%static "css/style.css" %} media="screen" type="text/css" />
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script type="text/javascript" src={%static "store.js" %}></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body id="checkout-page">
+
+    <section id="nav-bar">
+        <nav class="navbar navbar-expand-lg navbar-light">
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="topnav">
+                <a style="color:black;" class="active" href="/index"><img src={%static "images/logo-icon2.png" %} class="footer-logo"> </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbarNav">
+
+                <ul class="navbar-nav ml-auto">
+
+                    <li class="nav-item">
+                        <a style="color:black;" class="nav-link" href="/products.">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a style="color:black;" class="nav-link" href="/cart">Cart</a>
+
+                    </li>
+
+                    <li class="nav-item">
+                        <a style="color:black;" class="nav-link" href="/about">About Us</a>
+                    </li>
+
+                    <!-- <li class="nav-item">
+                        <a style="color:black;" class="nav-link" href="#services">Our Services</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a style="color:black;" class="nav-link" href="#team" tabindex="-1" aria-disabled="true">Our
+                            Team</a> -->
+                    </li>
+                    <li class="nav-item">
+                        <a style="color:black;" class="nav-link" href="/contact">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a style="color:black;" class="nav-link" href="/login">Login</a>
+                    </li>
+
+                </ul>
+            </div>
+        </nav>
+    </section>
+
+    <div id="site">
+        <div id="content">
+            <h1>Your Order</h1>
+            <table id="checkout-cart" class="shopping-cart">
+                <thead>
+                    <tr>
+                        <th scope="col">Item</th>
+                        <th scope="col">Qty</th>
+                        <th scope="col">Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+            <div id="pricing">
+
+                <p id="shipping">
+                    <strong>Shipping</strong>: <span id="sshipping"></span>
+                </p>
+
+                <p id="sub-total">
+                    <strong>Total</strong>: <span id="stotal"></span>
+                </p>
+            </div>
+
+            <div id="user-details" style="text-align: center;">
+                <h2>Your Details</h2>
+                <div id="user-details-content">
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                  Payment Options
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">Credit Card Payment</h5>
+               
+                  <div class="col-sm-s6 col-lg-5">
+                    <form method="post" action="{% url 'process_payment' %}">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="card-number">Credit Card Number</label>
+                            <input type="text" class="form-control" id="card-number" name="card_number" placeholder="1234 5678 9012 3456">
+                        </div>
+                        <div class="form-row" id="payment-card">
+                            <div class="form-group col-md-6">
+                                <label for="expiration-date">Expiration Date</label>
+                                <input type="text" class="form-control" id="expiration-date" name="expiration_date" placeholder="MM/YY">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="cvc">CVC</label>
+                                <input type="text" class="form-control" id="cvc" name="cvc" placeholder="123">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Process Order</button>
+                    </form>
+                </div>
+
+                </div>
+
+                <div class="card-footer bg-transparent border-success">
+                    <h5 class="card-title">Other Payment Options: </h5>
+                    
+            <form id="paypal-form" action="" method="post">
+                <input type="hidden" name="cmd" value="/cart" />
+                <input type="hidden" name="upload" value="1" />
+                <input type="hidden" name="business" value="" />
+
+                <input type="hidden" name="currency_code" value="" />
+                <input type="submit" id="paypal-btn" class="btn" value="Pay with PayPal"
+                    style="background-color: #FCB941; font-weight: bold; margin-left: auto; margin-right: auto; display: block;" />
+            </form>
+        </div>
+    </div>
+
+    <section id="footer" style="margin-top: 80px; background-color: rgb(252, 250, 250); padding-top: 30px;">
+		<footer class="container">
+			<div class="footer-middle">
+				<div class="container">
+					<div class="row">
+						<div class="col-sm-s6 col-lg-3">
+							<div class="widget widget-about">
+								<img src={%static "images/logo-icon2.png" %} class="footer-logo" alt="Footer Logo"
+									width="200" height="75">
+								<p> Click0nline Seamless Shopping</p>
+
+								<div class="widget-call">
+									<i class="icon-phone"></i>
+									Got Question? Call us 24/7
+									<a href="tel:#" style="color: #FCB941;">+27814014996</a>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-sm-6 col-lg-3">
+							<div class="widget">
+								<h4 class="widget-title">Useful Links</h4><!-- End .widget-title -->
+
+								<ul class="widget-list">
+									<li><a href="/about" style="color: #FCB941;">About Company</a></li>
+									<li><a href="#" style="color: #FCB941;">Our Services</a></li>
+									<li><a href="#" style="color: #FCB941;">How to shop</a></li>
+									<li><a href="faq.html" style="color: #FCB941;">FAQ</a></li>
+									<li><a href="/contact" style="color: #FCB941;">Contact us</a></li>
+								</ul>
+							</div>
+						</div>
+
+						<div class="col-sm-6 col-lg-3">
+							<div class="widget">
+								<h4>Customer Service</h4>
+
+								<ul class="widget-list">
+									<li><a href="#" style="color: #FCB941;">Payment Methods</a></li>
+									<li><a href="#" style="color: #FCB941;">Money-back guarantee!</a></li>
+									<li><a href="#" style="color: #FCB941;">Returns</a></li>
+									<li><a href="#" style="color: #FCB941;">Shipping</a></li>
+									<li><a href="#" style="color: #FCB941;">Terms and conditions</a></li>
+									<li><a href="#" style="color: #FCB941;">Privacy Policy</a></li>
+								</ul>
+							</div>
+						</div>
+
+						<div class="col-sm-6 col-lg-3">
+							<div class="widget">
+								<h4 class="widget-title">My Account</h4><!-- End .widget-title -->
+
+								<ul class="widget-list">
+									<li><a href="#" style="color: #FCB941;">Sign In</a></li>
+									<li><a href="/cart" style="color: #FCB941;">View Cart</a></li>
+									<li><a href="#" style="color: #FCB941;">My Wishlist</a></li>
+									<li><a href="#" style="color: #FCB941;">Track My Order</a></li>
+									<li><a href="#" style="color: #FCB941;">Help</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div>
+				<div class="container">
+					<p style="text-align:center;">Copyright © 2023. All Rights Reserved.</p>
+					<!-- <figure style="float: right;">
+						<img src="../images/products/payments.png" alt="Payment methods" width="272" height="20">
+					</figure> -->
+				</div>
+			</div>
+		</footer>
+	</section>
+    <script>
+        // Read data from session storage
+        var sessionData = sessionStorage.getItem('moe-cart');
+        var sessionmail = sessionStorage.getItem('billing-email');
+        var sessionname = sessionStorage.getItem('billing-name');
+        var sessionaddr = sessionStorage.getItem('billing-address');
+        var sessionzip = sessionStorage.getItem('billing-zip');
+        var sessioncity = sessionStorage.getItem('billing-city');
+        var sessioncountry = sessionStorage.getItem('billing-country');
+        var sessionship = sessionStorage.getItem('moe-shipping-rates');
+
+        // Add the session data to a hidden field in the form -Cart
+        var form = document.getElementById('payment-card');
+        var sessionDataField = document.createElement('input');
+        sessionDataField.type = 'hidden';
+        sessionDataField.name = 'shopping_list';
+        sessionDataField.value = sessionData;
+        form.appendChild(sessionDataField);
+
+// Add the session data to a hidden field in the form - email
+        var form = document.getElementById('payment-card');
+        var sessionDataField = document.createElement('input');
+        sessionDataField.type = 'hidden';
+        sessionDataField.name = 'billing-email';
+        sessionDataField.value = sessionmail;
+        form.appendChild(sessionDataField);
+        
+        // Add the session data to a hidden field in the form -name
+        var form = document.getElementById('payment-card');
+        var sessionDataField = document.createElement('input');
+        sessionDataField.type = 'hidden';
+        sessionDataField.name = 'billing-name';
+        sessionDataField.value = sessionname;
+        form.appendChild(sessionDataField);
+
+        // Add the session data to a hidden field in the form - addr
+        var form = document.getElementById('payment-card');
+        var sessionDataField = document.createElement('input');
+        sessionDataField.type = 'hidden';
+        sessionDataField.name = 'billing-addr';
+        sessionDataField.value = sessionaddr;
+        form.appendChild(sessionDataField);
+
+        // Add the session data to a hidden field in the form - zip
+        var form = document.getElementById('payment-card');
+        var sessionDataField = document.createElement('input');
+        sessionDataField.type = 'hidden';
+        sessionDataField.name = 'billing-zip';
+        sessionDataField.value = sessionzip;
+        form.appendChild(sessionDataField); 
+
+
+        // Add the session data to a hidden field in the form - city
+        var form = document.getElementById('payment-card');
+        var sessionDataField = document.createElement('input');
+        sessionDataField.type = 'hidden';
+        sessionDataField.name = 'billing-city';
+        sessionDataField.value = sessioncity;
+        form.appendChild(sessionDataField);
+
+
+        // Add the session data to a hidden field in the form - coutry
+        var form = document.getElementById('payment-card');
+        var sessionDataField = document.createElement('input');
+        sessionDataField.type = 'hidden';
+        sessionDataField.name = 'billing-country';
+        sessionDataField.value = sessioncountry;
+        form.appendChild(sessionDataField);
+
+        // Add the session data to a hidden field in the form - coutry
+        var form = document.getElementById('payment-card');
+        var sessionDataField = document.createElement('input');
+        sessionDataField.type = 'hidden';
+        sessionDataField.name = 'shipping-cost';
+        sessionDataField.value = sessionship;
+        form.appendChild(sessionDataField);
+
+
+    </script>
+</body>
+
+</html>
